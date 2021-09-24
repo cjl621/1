@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style type="text/css">
+      /* from bootstrap */
+      html [type=button] {
+        -webkit-appearance: button;
+      }
+
+      .btn {
+        display: inline-block;
+        font-weight: 400;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        border: 1px solid transparent;
+        font-size: 60%;
+        line-height: 1.5;
+        border-radius: .25rem;
+      }
+
+      .btn-success {
+        color: #fff;
+        background-color: #198754;
+        border-color: #198754;
+      }
+    </style>
+    <link rel="stylesheet" href="http://cdn.jsdelivr.net/chartist.js/latest/chartist.min.css"/>
+    <script src="http://cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script><!--画Chart的JS代码会被远程下载并执行-->
+  </head>
+  <body>
+<div style="text-align: center; margin-top: 30px;">
+	<h3 id="result">The best solution is (?, ?) </h3>
+</div>
+<div style="text-align: center; margin-top: 30px;">
+<button type="button" class="btn btn-success" onclick="go();">Calculate it</button><!--点击按钮会调用  go() 这个函数 -->
+</div>
+
+	  <div class="ct-chart"></div> <!--ct-chart 是个标记，后面的代码会让库把chart画到这里面-->
+
+      <script type="text/javascript">
+           function cal() {
+               let arr = new Array(16);
+               for (let i=0; i<16; i++) {
+                   arr[i] = Math.random() * 100; // 改成你要计算的东西
+               }
+
+            return arr;
+           }
+
+	   function go() {
+       // 画曲线
+	     let x = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
+	     let y = cal();
+
+	     new Chartist.Line('.ct-chart', {
+          labels: x,
+          series: [
+              y
+          ]
+          }, {
+          fullWidth: true,
+          chartPadding: {
+              right: 40
+          }
+	     });
+
+       // 更新<h3>内容
+       document.querySelector('#result').textContent = "The best solution is ( " + Math.round(y[5]) + ", " + Math.round(y[5]) + " )"; 
+      }
+     </script>
+  </body>
+</html>
