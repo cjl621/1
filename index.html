@@ -42,31 +42,40 @@
 
 	  <div class="ct-chart"></div> <!--ct-chart 是个标记，后面的代码会让库把chart画到这里面-->
 
-      <script type="text/javascript">
-           function cal() {
-               let arr = new Array(16);
-               for (let i=0; i<16; i++) {
-                   arr[i] = Math.random() * 98; // 改成你要计算的东西
-               }
-
-            return arr;
-           }    
-
-	   function go() {
-       // 画曲线
-	     let x = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
-	     let y = cal();
-
-	     new Chartist.Line('.ct-chart', {
-          labels: x,
-          series: [
-              y
-          ]
-          }, {
-          fullWidth: true,
-          chartPadding: {
-              right: 40
+    <script type="text/javascript">
+      function cal1() {
+          let arr1 = new Array(21);let arr2 = new Array(21);
+          for (let i=1; i<201; i++) {
+              arr1[0]=5000;arr2[0]=7000;
+              arr1[i] =arr1[i-1]+0.05*arr1[i-1]*(1-arr1[i-1]/150000)-0.0000001*arr1[i-1]*arr2[i-1]; // 改成你要计算的东西
+              arr2[i] =arr2[i-1]+0.08*arr2[i-1]*(1-arr2[i-1]/400000)-0.0000001*arr1[i-1]*arr2[i-1];
           }
+       return arr1;
+      }
+      function cal2() {
+          let arr1 = new Array(21);let arr2 = new Array(21);
+          for (let i=1; i<201; i++) {
+              arr1[0]=5000;arr2[0]=7000;
+              arr1[i] =arr1[i-1]+0.05*arr1[i-1]*(1-arr1[i-1]/150000)-0.0000001*arr1[i-1]*arr2[i-1]; // 改成你要计算的东西
+              arr2[i] =arr2[i-1]+0.08*arr2[i-1]*(1-arr2[i-1]/400000)-0.0000001*arr1[i-1]*arr2[i-1];
+          }
+       return arr2;
+      }
+function go() {
+  // 画曲线
+  let x = [ ];
+  let y1 = cal1(),y2=cal2();
+
+  new Chartist.Line('.ct-chart', {
+     labels: x,
+     series: [
+         y1,y2 
+     ]
+     }, {
+     fullWidth: true,
+     chartPadding: {
+         right: 40
+     }
 	     });
 
        // 更新<h3>内容
