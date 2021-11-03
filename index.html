@@ -33,16 +33,16 @@
     <script src="http://cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script><!--画Chart的JS代码会被远程下载并执行-->
   </head>
   <body>
-<div style="text-align: center; margin-top: 30px;">
+    <div style="text-align: center; margin-top: 30px;">
 	<h3 id="result">The best solution is (?, ?) </h3>
-</div>
-<div style="text-align: center; margin-top: 30px;">
-<button type="button" class="btn btn-success" onclick="go();">Calculate it</button><!--点击按钮会调用  go() 这个函数 -->
-</div>
+    </div>
+    <div style="text-align: center; margin-top: 30px;">
+      <button type="button" class="btn btn-success" onclick="go();">Calculate it</button><!--点击按钮会调用  go() 这个函数 -->
+    </div>
+ 
+    <div class="ct-chart"></div> <!--ct-chart 是个标记，后面的代码会让库把chart画到这里面-->
 
-	  <div class="ct-chart"></div> <!--ct-chart 是个标记，后面的代码会让库把chart画到这里面-->
-
-      <script type="text/javascript">
+    <script type="text/javascript">
            function cal() {
                let arr = new Array(16);
                for (let i=0; i<16; i++) {
